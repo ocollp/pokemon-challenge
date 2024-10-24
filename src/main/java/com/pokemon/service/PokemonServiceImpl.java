@@ -33,6 +33,10 @@ public class PokemonServiceImpl implements PokemonService {
 
         List<Pokemon> pokemons = pokemonRepository.findByNameStartingWith(prefix.trim());
 
+        if(pokemons.isEmpty()){
+            throw new PokemonNotFoundException("No Pokémon found that start with: " + prefix);
+        }
+
         return pokemons.stream()
                 .map(pokemonMapper::toDto)
                 .collect(Collectors.toList());
