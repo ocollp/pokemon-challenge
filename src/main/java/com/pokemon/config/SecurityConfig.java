@@ -12,7 +12,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/pokemon/heaviest").permitAll()
-                .anyRequest().authenticated();
+                .antMatchers("/pokemons/heaviest").permitAll()
+                .anyRequest().authenticated()
+                .and().httpBasic();
     }
 }

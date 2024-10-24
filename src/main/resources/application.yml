@@ -1,4 +1,8 @@
 spring:
+  security:
+    user:
+      name: admin
+      password: 1234
   datasource:
     url: jdbc:postgresql://localhost:5432/pokemon
     username: postgres
@@ -10,7 +14,6 @@ spring:
         default_schema: public
     database: POSTGRESQL
     show-sql: true
-
   liquibase:
     enabled: true
     change-log: classpath:/db/changelog-master.xml
