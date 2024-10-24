@@ -1,23 +1,25 @@
 package com.pokemon.dto;
 
+import java.util.UUID;
+
 public class PokemonDto {
-    private Long id;
+    private UUID id;
     private String name;
     private double weight;
     private int baseExperience;
 
-    public PokemonDto(Long id, String name, double weight, int baseExperience) {
+    public PokemonDto(UUID id, String name, double weight, int baseExperience) {
         this.id = id;
         this.name = name;
         this.weight = weight;
         this.baseExperience = baseExperience;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

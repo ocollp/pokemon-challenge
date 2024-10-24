@@ -5,14 +5,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.UUID;
 
 @Entity
-@Table(name = "pokemons")
+@Table(name = "pokemon")
 public class Pokemon {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private UUID id;
     private String name;
     private double weight;
     private int baseExperience;
@@ -20,7 +21,7 @@ public class Pokemon {
     public Pokemon() {
     }
 
-    public Pokemon(Long id, String name, double weight, int baseExperience) {
+    public Pokemon(UUID id, String name, double weight, int baseExperience) {
         this.id = id;
         this.name = name;
         this.weight = weight;
@@ -28,11 +29,11 @@ public class Pokemon {
     }
 
     // Getters y setters
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
