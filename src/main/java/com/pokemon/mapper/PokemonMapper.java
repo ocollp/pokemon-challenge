@@ -2,21 +2,12 @@ package com.pokemon.mapper;
 
 import com.pokemon.dto.PokemonDto;
 import com.pokemon.model.Pokemon;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
 
+@Mapper(componentModel = "spring")
+public interface PokemonMapper {
 
-@Component
-public class PokemonMapper {
+    PokemonDto toDto(Pokemon pokemon);
 
-    public PokemonDto toDto(Pokemon pokemon) {
-        if (pokemon == null) {
-            return null;
-        }
-        return new PokemonDto(
-                pokemon.getId(),
-                pokemon.getName(),
-                pokemon.getWeight(),
-                pokemon.getBaseExperience()
-        );
-    }
+    Pokemon toEntity(PokemonDto pokemonDto);
 }

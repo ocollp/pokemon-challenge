@@ -9,20 +9,52 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
 public class PokemonServiceImpl implements PokemonService {
 
-    @Autowired
-    private PokemonRepository pokemonRepository;
+    private final PokemonRepository pokemonRepository;
+    private final PokemonMapper pokemonMapper;
 
     @Autowired
-    private PokemonMapper pokemonMapper;
-
-    @Autowired
-    public PokemonServiceImpl(PokemonRepository pokemonRepository) {
+    public PokemonServiceImpl(PokemonRepository pokemonRepository, PokemonMapper pokemonMapper) {
         this.pokemonRepository = pokemonRepository;
+        this.pokemonMapper = pokemonMapper;
+    }
+
+    @Override
+    public PokemonDto createPokemon(PokemonDto pokemonDto) {
+        Pokemon pokemon = pokemonMapper.toEntity(pokemonDto);
+        Pokemon savedPokemon = pokemonRepository.save(pokemon);
+        return pokemonMapper.toDto(savedPokemon);
+    }
+
+    @Override
+    public List<PokemonDto> getAllPokemons() {
+        return pokemonRepository.findAll().stream().map(pokemonMapper::toDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<PokemonDto> getPokemonById(UUID id) {
+        return pokemonRepository.findById(id).map(pokemonMapper::toDto);
+    }
+
+    @Override
+    public Optional<PokemonDto> updatePokemon(UUID id, PokemonDto updatedPokemonDto) {
+        return pokemonRepository.findById(id).map(pokemon -> {
+            pokemon.setName(updatedPokemonDto.getName());
+            pokemon.setWeight(updatedPokemonDto.getWeight());
+            pokemon.setBaseExperience(updatedPokemonDto.getBaseExperience());
+            return pokemonMapper.toDto(pokemonRepository.save(pokemon));
+        });
+    }
+
+    @Override
+    public void deletePokemon(UUID id) {
+        pokemonRepository.deleteById(id);
     }
 
     @Override
@@ -33,13 +65,11 @@ public class PokemonServiceImpl implements PokemonService {
 
         List<Pokemon> pokemons = pokemonRepository.findByNameStartingWith(prefix.trim());
 
-        if(pokemons.isEmpty()){
+        if (pokemons.isEmpty()) {
             throw new PokemonNotFoundException("No Pokémon found that start with: " + prefix);
         }
 
-        return pokemons.stream()
-                .map(pokemonMapper::toDto)
-                .collect(Collectors.toList());
+        return pokemons.stream().map(pokemonMapper::toDto).collect(Collectors.toList());
     }
 
     @Override
@@ -50,9 +80,7 @@ public class PokemonServiceImpl implements PokemonService {
             throw new PokemonNotFoundException("No Pokémon found.");
         }
 
-        return pokemons.stream()
-                .map(pokemonMapper::toDto)
-                .collect(Collectors.toList());
+        return pokemons.stream().map(pokemonMapper::toDto).collect(Collectors.toList());
     }
 
     @Override
@@ -63,7 +91,6 @@ public class PokemonServiceImpl implements PokemonService {
             throw new PokemonNotFoundException("No Pokémon found.");
         }
 
-        return pokemons.stream()
-                .map(pokemonMapper::toDto)
-                .collect(Collectors.toList());    }
+        return pokemons.stream().map(pokemonMapper::toDto).collect(Collectors.toList());
+    }
 }

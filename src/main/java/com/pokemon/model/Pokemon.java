@@ -21,14 +21,12 @@ public class Pokemon {
     public Pokemon() {
     }
 
-    public Pokemon(UUID id, String name, double weight, int baseExperience) {
-        this.id = id;
+    public Pokemon(String name, double weight, int baseExperience) {
         this.name = name;
         this.weight = weight;
         this.baseExperience = baseExperience;
     }
 
-    // Getters y setters
     public UUID getId() {
         return id;
     }
