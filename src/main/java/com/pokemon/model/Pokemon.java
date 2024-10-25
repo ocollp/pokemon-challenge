@@ -1,5 +1,7 @@
 package com.pokemon.model;
 
+import lombok.*;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,6 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.UUID;
 
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "pokemon")
 public class Pokemon {
@@ -17,45 +24,4 @@ public class Pokemon {
     private String name;
     private double weight;
     private int baseExperience;
-
-    public Pokemon() {
-    }
-
-    public Pokemon(String name, double weight, int baseExperience) {
-        this.name = name;
-        this.weight = weight;
-        this.baseExperience = baseExperience;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public int getBaseExperience() {
-        return baseExperience;
-    }
-
-    public void setBaseExperience(int baseExperience) {
-        this.baseExperience = baseExperience;
-    }
 }
