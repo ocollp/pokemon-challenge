@@ -1,8 +1,6 @@
 package com.pokemon.service;
 
 import com.pokemon.dto.PokemonDto;
-import com.pokemon.model.Pokemon;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
