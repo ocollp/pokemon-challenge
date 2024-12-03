@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-public interface PutPokemonUseCase extends UseCaseWithParameters<PutPokemonUseCase.InputValues, PutPokemonUseCase.OutputValues> {
+public interface UpdatePokemonUseCase extends UseCaseWithParameters<UpdatePokemonUseCase.InputValues, UpdatePokemonUseCase.OutputValues> {
 
     @Data
     @Builder

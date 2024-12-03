@@ -2,7 +2,6 @@ package com.pokemon.domain.port.input;
 
 import com.pokemon.domain.entity.Pokemon;
 import com.pokemon.domain.shared.UseCaseWithParameters;
-import com.pokemon.domain.shared.dto.PageDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

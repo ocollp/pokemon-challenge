@@ -1,6 +1,5 @@
 package com.pokemon.domain.port.input.interactor;
 
-import com.pokemon.domain.entity.Pokemon;
 import com.pokemon.domain.exception.NotFoundException;
 import com.pokemon.domain.factory.PokemonFactory;
 import com.pokemon.domain.port.input.DeletePokemonUseCase;

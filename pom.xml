@@ -9,6 +9,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>client</module>
+        <module>domain</module>
+        <module>application</module>
     </modules>
 
     <parent>
@@ -20,7 +22,8 @@
     <name>pokemon-challenge</name>
     <description>Challenge project</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
+        <spring.contract.verfier.maven.version>2.2.3.RELEASE</spring.contract.verfier.maven.version>
     </properties>
 
     <repositories>
